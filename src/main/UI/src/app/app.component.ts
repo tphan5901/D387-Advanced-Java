@@ -4,10 +4,6 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Observable } from 'rxjs';
 import {map} from "rxjs/operators";
 
-
-
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,11 +11,8 @@ import {map} from "rxjs/operators";
 })
 export class AppComponent implements OnInit{
 
-  // C1B - Code to print the welcome message in French and English on the site
   welcomeMessageEnglish$!: Observable<string>
   welcomeMessageFrench$!: Observable<string>
-
-  // C3B - Code to announce the presentation w/ time zone conversions
   announcePresentation$!: Observable<string>
 
   constructor(private httpClient:HttpClient){}
@@ -67,7 +60,7 @@ export class AppComponent implements OnInit{
         rooms => {
           console.log(Object.values(rooms)[0]);
           this.rooms=<Room[]>Object.values(rooms)[0];
-          // C2 - Code to add the CAD/EUR "prices"
+          // C2
           this.rooms.forEach( room => { room.priceCAD = room.price; room.priceEUR = room.price})
         }
       );

@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Room")
 public class RoomEntity {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -20,30 +19,19 @@ public class RoomEntity {
 	private Integer roomNumber;
 
 	@NotNull
-	private String priceUSD;
-
-	@NotNull
 	private String price;
-
-	@Transient // Avoid creating field in the database
-	private double priceCAD;
-
-	@Transient
-	private double priceEUR;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private List<ReservationEntity> reservationEntityList;
 
-
-	// Constructor
-	public RoomEntity(Integer roomNumber, String priceUSD) {
-		this.roomNumber = roomNumber;
-		this.priceUSD = priceUSD;
-		this.priceCAD = CurrencyConverter.convert("CAD", Double.parseDouble(priceUSD));
-		this.priceEUR = CurrencyConverter.convert("EUR", Double.parseDouble(priceUSD));
+	public RoomEntity() {
 	}
 
-	// Getters and setters
+	public RoomEntity(Integer roomNumber, String price) {
+		this.roomNumber = roomNumber;
+		this.price = price;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -68,28 +56,6 @@ public class RoomEntity {
 		this.price = price;
 	}
 
-	public String getPriceUSD() {
-		return priceUSD;
-	}
-
-	public void setPriceUSD(String priceUSD) {
-		this.priceUSD = priceUSD;
-		this.priceCAD = CurrencyConverter.convert("CAD", Double.parseDouble(priceUSD));
-		this.priceEUR = CurrencyConverter.convert("EUR", Double.parseDouble(priceUSD));
-	}
-
-	public double getPriceCAD() {
-		return priceCAD;
-	}
-
-	public void setPriceCAD(){
-		this.priceCAD = CurrencyConverter.convert("CAD", Double.parseDouble(priceUSD));
-    }
-
-	public double getPriceEUR() {
-		return priceEUR;
-	}
-
 	public List<ReservationEntity> getReservationEntityList() {
 		return reservationEntityList;
 	}
@@ -104,4 +70,5 @@ public class RoomEntity {
 
 		reservationEntityList.add(reservationEntity);
 	}
+
 }

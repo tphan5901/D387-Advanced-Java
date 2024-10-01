@@ -4,19 +4,27 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class WelcomeMessage implements Runnable {
-    private final Locale locale;
+
+    Locale locale;
 
     public WelcomeMessage(Locale locale) {
         this.locale = locale;
     }
 
-    public String getMessage() {
-        ResourceBundle bundle = ResourceBundle.getBundle("translation", locale);
+    public String getWelcomeMessage() {
+        ResourceBundle bundle = ResourceBundle.getBundle("translation",locale);
         return bundle.getString("welcome");
     }
 
     @Override
     public void run() {
-        System.out.println("Thread verification: " + getMessage() + ", ThreadID: " + Thread.currentThread().getId());
+        try {
+            System.out.println("ThreadID: " + Thread.currentThread().getId());
+            String message = getWelcomeMessage();
+            System.out.println("Welcome Message: " + message);
+        } catch (Exception e) {
+            System.err.println("Error creating threads: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

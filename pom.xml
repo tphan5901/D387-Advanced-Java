@@ -121,6 +121,7 @@
                 </configuration>
             </plugin>
         </plugins>
+		<finalName>dockerized-application</finalName>
 	</build>
 
 </project>
