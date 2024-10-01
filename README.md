@@ -103,20 +103,18 @@ public class D387SampleCodeApplication {
    Note: It is not necessary to convert the values of the prices.
    MODIFY:
 
-        app.component.ts, lines 70-71
+        app.component.ts, line 70-71
 
-            // C2 - Code to add the CAD/EUR "prices"
             this.rooms.forEach( room => { room.priceCAD = room.price; room.priceEUR = room.price})
     
-        app.component.ts, lines 120-122
+        app.component.ts, line 120-122
 
-            // C2 - Code to add the CAD/EUR "prices"
             priceCAD:string;
             priceEUR:string;
 
-        app.component.html, lines 86-90
-            < strong > Price: CA${{room.priceCAD}} < /strong > < br > 
-            < strong > Price: EUR€{{room.priceEUR}} < /strong > < br >
+        app.component.html, line 86-90
+            <strong> Price: CA${{room.priceCAD}} </strong> <br> 
+            <strong> Price: EUR€{{room.priceEUR}} </strong> <br>
 
 3. Display the time for an online live presentation held at the Landon Hotel by doing the following: a. Write a Java method to convert times between eastern time (ET), mountain time (MT), and coordinated universal time (UTC) zones.
    CREATE:
