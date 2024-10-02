@@ -39,11 +39,6 @@ app.component.ts
 
    ngOnInit(){
 
-      this.welcomeMessageFrench$ = this.httpClient.get(this.baseURL + '/welcome?lang=fr-CA', {responseType: 'text'} )
-      this.welcomeMessageEnglish$ = this.httpClient.get(this.baseURL + '/welcome?lang=en-US', {responseType: 'text'} )
-      this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', {responseType: 'text'} )
-
-
        this.welcomeMessageFrench$ = this.httpClient.get(this.baseURL + '/welcome?lang=fr-CA', { responseType: 'text' }).pipe(
            map(message => {
              console.log('French Welcome Message:', message);
@@ -122,7 +117,6 @@ public class D387SampleCodeApplication {
 app.component.html
   <h1>{{welcomeMessageFrench$ | async}}</h1>
   <h1>{{welcomeMessageEnglish$ | async}}</h1>
-
 
 
 2. Modify the front end to display the price for a reservation in currency rates for U.S. dollars ($), Canadian dollars (C$), and euros (€) on different lines.
