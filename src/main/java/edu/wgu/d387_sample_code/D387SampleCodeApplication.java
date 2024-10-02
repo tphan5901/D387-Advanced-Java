@@ -1,5 +1,5 @@
 package edu.wgu.d387_sample_code;
-import edu.wgu.d387_sample_code.Localization.WelcomeMessage;
+import edu.wgu.d387_sample_code.Localization.GetBundle;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -15,8 +15,8 @@ public class D387SampleCodeApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(D387SampleCodeApplication.class, args);
 
-		executorService.submit(new WelcomeMessage(Locale.US));
-		executorService.submit(new WelcomeMessage(Locale.CANADA_FRENCH));
+		executorService.submit(new GetBundle(Locale.US));
+		executorService.submit(new GetBundle(Locale.CANADA_FRENCH));
 
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
 			try {

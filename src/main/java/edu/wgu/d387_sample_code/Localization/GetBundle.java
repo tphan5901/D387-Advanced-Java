@@ -6,11 +6,12 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 @CrossOrigin(origins = "http://localhost:4200")
-public class WelcomeMessage implements Runnable {
+public class GetBundle implements Runnable {
 
     private final Locale locale;
 
-    public WelcomeMessage(Locale locale) {
+
+    public GetBundle(Locale locale) {
         this.locale = locale;
     }
 
