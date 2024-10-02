@@ -139,27 +139,31 @@ app.component.html
 3. Display the time for an online live presentation held at the Landon Hotel by doing the following: a. Write a Java method to convert times between eastern time (ET), mountain time (MT), and coordinated universal time (UTC) zones.
    CREATE:
 
-        ConvertTimezone.java
+package edu.wgu.d387_sample_code.Localization;
+public class ConvertTimezone {
 
-            package edu.wgu.d387_sample_code.internationalization;
-            
-            import org.springframework.web.bind.annotation.CrossOrigin;
-            import java.time.*;
-            import java.time.format.DateTimeFormatter;
-            
-            @CrossOrigin(origins = "http://localhost:4200")
-            public class TZConvert {
-            
-                public static String getTime() {
-                    ZonedDateTime time = ZonedDateTime.now();
-                    DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
-            
-                    ZonedDateTime est = time.withZoneSameInstant(ZoneId.of("America/New_York"));
-                    ZonedDateTime mst = time.withZoneSameInstant(ZoneId.of("America/Denver"));
-                    ZonedDateTime utc = time.withZoneSameInstant(ZoneId.of("UTC"));
-            
-                    String times = est.format(timeFormat) + "EST, " + mst.format(timeFormat) + "MST, " + utc.format(timeFormat) + "UTC";
-            
-                    return times;
-                }
-            }
+    private static final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
+    private static final Map<String, String> timeZones = Map.<String, String>of(
+            "US EST", "America/New_York",
+            "US MST", "America/Denver",
+            "UTC", "UTC"
+    );
+
+    public static String getTime() {
+        ZonedDateTime currentTime = ZonedDateTime.now();
+
+        StringBuilder timeStringBuilder = new StringBuilder();
+        timeZones.forEach((name, zoneId) -> {
+            ZonedDateTime zonedTime = currentTime.withZoneSameInstant(ZoneId.of(zoneId));
+            timeStringBuilder.append(name).append(": ").append(zonedTime.format(timeFormat)).append(" ");
+        });
+
+        return timeStringBuilder.toString().trim();
+    }
+
+    public static void main(String[] args) {
+        String message = getTime();
+        System.out.println("Message: " + message);
+    }
+
+}
