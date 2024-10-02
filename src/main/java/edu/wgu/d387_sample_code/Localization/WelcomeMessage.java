@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 @CrossOrigin(origins = "http://localhost:4200")
 public class WelcomeMessage implements Runnable {
 
-    Locale locale;
+    private final Locale locale;
 
     public WelcomeMessage(Locale locale) {
         this.locale = locale;

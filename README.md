@@ -12,7 +12,7 @@ C. Modify the Landon Hotel scheduling application for localization and internati
             translation_fr_ca.properties
                 hello=Bonjour!
                 welcome=Bienvenue à l'hôtel Landon
-                presentation.message = Il y aura une présentation à l’adresse suivante :
+                presentation.message = Il y aura une présentation à l’adresse suivante:
 
 b. Display the welcome message in both English and French by applying the resource bundles using a different thread for each language.
 
@@ -64,13 +64,13 @@ app.component.ts
 package edu.wgu.d387_sample_code.Localization;
 public class WelcomeMessage implements Runnable {
 
-    Locale locale;
+    private final Locale locale;
 
     public WelcomeMessage(Locale locale) {
         this.locale = locale;
     }
 
-    public String getWelcomeMessage() {
+    public String getMessage() {
         ResourceBundle bundle = ResourceBundle.getBundle("translation",locale);
         return bundle.getString("welcome");
     }
@@ -79,7 +79,7 @@ public class WelcomeMessage implements Runnable {
     public void run() {
         try {
             System.out.println("ThreadID: " + Thread.currentThread().getId());
-            String message = getWelcomeMessage();
+            String message = getMessage();
             System.out.println("Welcome Message: " + message);
         } catch (Exception e) {
             System.err.println("Error creating threads: " + e.getMessage());
