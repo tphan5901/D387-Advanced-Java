@@ -16,9 +16,7 @@ public class ConvertTimezone {
         ZonedDateTime mst = currentTime.withZoneSameInstant(ZoneId.of("America/Denver"));
         ZonedDateTime utc = currentTime.withZoneSameInstant(ZoneId.of("UTC"));
 
-        String times = est.format(timeFormat) + "NA EST: " + mst.format(timeFormat) + "US MST: " + utc.format(timeFormat) + "UTC";
-
-        return times;
+        return est.format(timeFormat) + "NA EST: " + mst.format(timeFormat) + "US MST: " + utc.format(timeFormat) + "UTC";
     }
 
     public static void main(String[] args) {
