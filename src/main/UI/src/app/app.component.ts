@@ -16,7 +16,6 @@ export class AppComponent implements OnInit{
   announcePresentation$!: Observable<string>
 
   constructor(private httpClient:HttpClient){}
-
   private baseURL:string='http://localhost:4200';
 
   private getUrl:string = this.baseURL + '/room/reservation/v1/';
@@ -37,14 +36,14 @@ export class AppComponent implements OnInit{
 
        this.welcomeMessageFrench$ = this.httpClient.get(this.baseURL + '/welcome?lang=fr-CA', { responseType: 'text' }).pipe(
            map(message => {
-             console.log('French Welcome Message:', message);
+             console.log('French:', message);
              return message;
            })
          );
 
          this.welcomeMessageEnglish$ = this.httpClient.get(this.baseURL + '/welcome?lang=en-US', { responseType: 'text' }).pipe(
            map(message => {
-             console.log('English Welcome Message:', message);
+             console.log('Message:', message);
              return message;
            })
          );
@@ -115,13 +114,10 @@ export class AppComponent implements OnInit{
   }
 
 
-
 export interface Roomsearch{
     checkin:string;
     checkout:string;
   }
-
-
 
 
 export interface Room{

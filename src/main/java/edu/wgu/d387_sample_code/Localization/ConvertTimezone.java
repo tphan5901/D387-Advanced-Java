@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 @CrossOrigin(origins = "http://localhost:4200")
 public class ConvertTimezone {
 
-
     public static String getTime() {
         //datetime
         ZonedDateTime currentTime = ZonedDateTime.now();

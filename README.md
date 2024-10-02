@@ -41,21 +41,21 @@ app.component.ts
 
        this.welcomeMessageFrench$ = this.httpClient.get(this.baseURL + '/welcome?lang=fr-CA', { responseType: 'text' }).pipe(
            map(message => {
-             console.log('French Welcome Message:', message);
+             console.log('French:', message);
              return message;
            })
          );
       
          this.welcomeMessageEnglish$ = this.httpClient.get(this.baseURL + '/welcome?lang=en-US', { responseType: 'text' }).pipe(
            map(message => {
-             console.log('English Welcome Message:', message);
+             console.log('English:', message);
              return message;
            })
          );
       
          this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', { responseType: 'text' }).pipe(
            map(presentation => {
-             console.log('Presentation Announcement:', presentation);
+             console.log('Announcement:', presentation);
              return presentation;
            })
          );
@@ -139,7 +139,7 @@ app.component.html
 3. Display the time for an online live presentation held at the Landon Hotel by doing the following: a. Write a Java method to convert times between eastern time (ET), mountain time (MT), and coordinated universal time (UTC) zones.
    CREATE:
 
-        TZConvert.java
+        ConvertTimezone.java
 
             package edu.wgu.d387_sample_code.internationalization;
             
