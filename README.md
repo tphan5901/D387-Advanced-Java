@@ -7,10 +7,13 @@ C. Modify the Landon Hotel scheduling application for localization and internati
             translation_en_us.properties
                 hello=Hi!
                 welcome=Welcome to the Landon Hotel
+                presentation.message = there is a presentation at:
 
             translation_fr_ca.properties
                 hello=Bonjour!
                 welcome=Bienvenue à l'hôtel Landon
+                presentation.message = Il y aura une présentation à l’adresse suivante :
+
 b. Display the welcome message in both English and French by applying the resource bundles using a different thread for each language.
 
 
@@ -31,6 +34,37 @@ private final ExecutorService executor = Executors.newFixedThreadPool(2);
         executor.shutdown();
     }
 }
+
+app.component.ts
+
+   ngOnInit(){
+
+      this.welcomeMessageFrench$ = this.httpClient.get(this.baseURL + '/welcome?lang=fr-CA', {responseType: 'text'} )
+      this.welcomeMessageEnglish$ = this.httpClient.get(this.baseURL + '/welcome?lang=en-US', {responseType: 'text'} )
+      this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', {responseType: 'text'} )
+
+
+       this.welcomeMessageFrench$ = this.httpClient.get(this.baseURL + '/welcome?lang=fr-CA', { responseType: 'text' }).pipe(
+           map(message => {
+             console.log('French Welcome Message:', message);
+             return message;
+           })
+         );
+      
+         this.welcomeMessageEnglish$ = this.httpClient.get(this.baseURL + '/welcome?lang=en-US', { responseType: 'text' }).pipe(
+           map(message => {
+             console.log('English Welcome Message:', message);
+             return message;
+           })
+         );
+      
+         this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', { responseType: 'text' }).pipe(
+           map(presentation => {
+             console.log('Presentation Announcement:', presentation);
+             return presentation;
+           })
+         );
+
 
 package edu.wgu.d387_sample_code.Localization;
 public class WelcomeMessage implements Runnable {
@@ -84,6 +118,11 @@ public class D387SampleCodeApplication {
 	}
 
 }
+
+app.component.html
+  <h1>{{welcomeMessageFrench$ | async}}</h1>
+  <h1>{{welcomeMessageEnglish$ | async}}</h1>
+
 
 
 2. Modify the front end to display the price for a reservation in currency rates for U.S. dollars ($), Canadian dollars (C$), and euros (€) on different lines.
