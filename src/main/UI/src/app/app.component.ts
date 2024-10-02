@@ -30,11 +30,11 @@ export class AppComponent implements OnInit{
 
     ngOnInit(){
 
-      // C1B - Code to print the welcome message in French and English on the site
+      // C1B
       this.welcomeMessageFrench$ = this.httpClient.get(this.baseURL + '/welcome?lang=fr-CA', {responseType: 'text'} )
       this.welcomeMessageEnglish$ = this.httpClient.get(this.baseURL + '/welcome?lang=en-US', {responseType: 'text'} )
 
-      // C3B - Code to add conference announcement
+      // C3B
       this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', {responseType: 'text'} )
 
       this.roomsearch= new FormGroup({
@@ -42,7 +42,6 @@ export class AppComponent implements OnInit{
         checkout: new FormControl(' ')
       });
 
- //     this.rooms=ROOMS;
 
 
     const roomsearchValueChanges$ = this.roomsearch.valueChanges;
@@ -60,7 +59,7 @@ export class AppComponent implements OnInit{
         rooms => {
           console.log(Object.values(rooms)[0]);
           this.rooms=<Room[]>Object.values(rooms)[0];
-          // C2
+          // C2 add price
           this.rooms.forEach( room => { room.priceCAD = room.price; room.priceEUR = room.price})
         }
       );
@@ -110,7 +109,7 @@ export interface Room{
   id:string;
   roomNumber:string;
   price:string;
-  // C2 - Code to add the CAD/EUR "prices"
+  // C2 add room object:string datatype
   priceCAD:string;
   priceEUR:string;
   links:string;
@@ -131,25 +130,5 @@ export class ReserveRoomRequest {
   }
 }
 
-/*
-var ROOMS: Room[]=[
-  {
-  "id": "13932123",
-  "roomNumber" : "409",
-  "price" :"20",
-  "links" : ""
-},
-{
-  "id": "139324444",
-  "roomNumber" : "509",
-  "price" :"30",
-  "links" : ""
-},
-{
-  "id": "139324888",
-  "roomNumber" : "609",
-  "price" :"40",
-  "links" : ""
-}
-] */
+
 

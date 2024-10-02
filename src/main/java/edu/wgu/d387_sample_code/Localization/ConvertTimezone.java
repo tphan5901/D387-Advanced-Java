@@ -5,7 +5,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 @CrossOrigin(origins = "http://localhost:4200")
-public class TZConvert {
+public class ConvertTimezone {
 
 
     public static String getTime() {

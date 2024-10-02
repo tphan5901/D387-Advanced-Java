@@ -12,22 +12,9 @@ C. Modify the Landon Hotel scheduling application for localization and internati
                 hello=Bonjour!
                 welcome=Bienvenue à l'hôtel Landon
 b. Display the welcome message in both English and French by applying the resource bundles using a different thread for each language.
+
+
 package edu.wgu.d387_sample_code.Localization;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.PreDestroy;
-import java.util.Locale;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-@CrossOrigin(origins = "http://localhost:4200")
-@RestController
 public class WelcomeController {
 private final ExecutorService executor = Executors.newFixedThreadPool(2);
 
@@ -45,7 +32,7 @@ private final ExecutorService executor = Executors.newFixedThreadPool(2);
     }
 }
 
-
+package edu.wgu.d387_sample_code.Localization;
 public class WelcomeMessage implements Runnable {
 
     Locale locale;

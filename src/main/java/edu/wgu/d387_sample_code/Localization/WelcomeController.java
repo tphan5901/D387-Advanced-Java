@@ -17,8 +17,8 @@ import java.util.concurrent.Executors;
 public class WelcomeController {
 
     @GetMapping("/welcome")
-    public ResponseEntity<String> displayWelcome (@RequestParam("lang") String lang) {
-        Locale locale = Locale.forLanguageTag(lang);
+    public ResponseEntity<String> displayWelcome (@RequestParam("lang") String welcome) {
+        Locale locale = Locale.forLanguageTag(welcome);
         WelcomeMessage welcomeMessage = new WelcomeMessage(locale);
         return new ResponseEntity<String> (welcomeMessage.getWelcomeMessage(), HttpStatus.OK); // respond
     }

@@ -22,17 +22,16 @@
 <main id="wrapper">
   <div class="scene" id="welcome">
     <article class="content">
-      <!-- C1B - Code to add French/English -->
+      <!-- C1B-->
       <div>
         <h1>{{welcomeMessageFrench$ | async}}</h1>
         <h1>{{welcomeMessageEnglish$ | async}}</h1>
       </div><br><br>
-      <!-- C1B - Code to add French/English -->
-      <!-- C3B - Code to add presentation announcement -->
+      <!-- C3B -->
       <div class="scene" id="presentation">
         <h1>{{announcePresentation$ | async}}</h1>
       </div><br><br>
-      <!-- C3B - Code to add presentation announcement -->
+
       <div class="row">
         <div class=""col-12>
           <div class="gallery">
@@ -84,10 +83,8 @@
                 <td>
                   <strong>Room #: {{room.roomNumber}}</strong><br/>
                   <strong>Price: ${{room.price}}</strong><br>
-                  <!-- C2 - Code to add CAD and EUR price listings -->
                   <strong>Price: CA${{room.priceCAD}}</strong><br>
                   <strong>Price: EUR€{{room.priceEUR}}</strong><br>
-                  <!-- C2 - Code to add CAD and EUR price listings -->
                 </td>
                 <td>
                   <button type="submit" class="btn btn-primary" (click)="reserveRoom(room.id)">Reserve</button>

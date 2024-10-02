@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class TZConvertController {
+public class TimezoneController {
 
     @GetMapping("/presentation")
-    public ResponseEntity<String> announcePresentation() {
-        String announcement = "There is a presentation at: " + TZConvert.getTime();
+    public ResponseEntity<String> present() {
+        String announcement = "There is a presentation at: " + ConvertTimezone.getTime();
         return new ResponseEntity<String> (announcement, HttpStatus.OK);
     }
 
