@@ -9,6 +9,7 @@ public class ConvertTimezone {
 
 
     public static String getTime() {
+        //datetime
         ZonedDateTime currentTime = ZonedDateTime.now();
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -16,10 +17,12 @@ public class ConvertTimezone {
         ZonedDateTime mst = currentTime.withZoneSameInstant(ZoneId.of("America/Denver"));
         ZonedDateTime utc = currentTime.withZoneSameInstant(ZoneId.of("UTC"));
 
-        return est.format(timeFormat) + "NA EST: " + mst.format(timeFormat) + "US MST: " + utc.format(timeFormat) + "UTC";
+        return  "US EST:" + est.format(timeFormat) + " " + mst.format(timeFormat) + "US MST: " + utc.format(timeFormat) + " UTC";
     }
 
     public static void main(String[] args) {
-        System.out.println(getTime());
+        String message = getTime();
+        System.out.println("Message: " + message);
     }
+
 }

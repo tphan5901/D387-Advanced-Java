@@ -20,7 +20,7 @@ public class WelcomeController {
     public ResponseEntity<String> displayWelcome (@RequestParam("lang") String welcome) {
         Locale locale = Locale.forLanguageTag(welcome);
         WelcomeMessage welcomeMessage = new WelcomeMessage(locale);
-        return new ResponseEntity<String> (welcomeMessage.getWelcomeMessage(), HttpStatus.OK); // respond
+        return new ResponseEntity<String> (welcomeMessage.getMessage(), HttpStatus.OK); // respond
     }
 
     @PreDestroy

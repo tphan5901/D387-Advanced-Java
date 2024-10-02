@@ -14,17 +14,17 @@ public class WelcomeMessage implements Runnable {
         this.locale = locale;
     }
 
-    public String getWelcomeMessage() {
+    public String getMessage() {
         ResourceBundle bundle = ResourceBundle.getBundle("translation",locale);
-        return bundle.getString("welcome");
+        return bundle.getString("greeting");
     }
 
     @Override
     public void run() {
         try {
             System.out.println("ThreadID: " + Thread.currentThread().getId());
-            String message = getWelcomeMessage();
-            System.out.println("Welcome Message: " + message);
+            String message = getMessage();
+            System.out.println("Message: " + message);
         } catch (Exception e) {
             System.err.println("Error creating threads: " + e.getMessage());
             e.printStackTrace();
