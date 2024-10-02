@@ -13,7 +13,6 @@ public class D387SampleCodeApplication {
 	private static ExecutorService executorService = Executors.newFixedThreadPool(2);
 
 	public static void main(String[] args) {
-		SpringApplication.run(D387SampleCodeApplication.class, args);
 		ConfigurableApplicationContext context = SpringApplication.run(D387SampleCodeApplication.class, args);
 
 		executorService.submit(new WelcomeMessage(Locale.US));

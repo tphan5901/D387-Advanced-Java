@@ -1,8 +1,11 @@
 package edu.wgu.d387_sample_code.Localization;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+@CrossOrigin(origins = "http://localhost:4200")
 public class WelcomeMessage implements Runnable {
 
     Locale locale;

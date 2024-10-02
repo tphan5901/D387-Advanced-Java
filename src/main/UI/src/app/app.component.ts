@@ -17,7 +17,7 @@ export class AppComponent implements OnInit{
 
   constructor(private httpClient:HttpClient){}
 
-  private baseURL:string='http://localhost:8080';
+  private baseURL:string='http://localhost:4200';
 
   private getUrl:string = this.baseURL + '/room/reservation/v1/';
   private postUrl:string = this.baseURL + '/room/reservation/v1';
@@ -37,6 +37,27 @@ export class AppComponent implements OnInit{
       // C3B
       this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', {responseType: 'text'} )
 
+
+ this.welcomeMessageFrench$ = this.httpClient.get(this.baseURL + '/welcome?lang=fr-CA', { responseType: 'text' }).pipe(
+     map(message => {
+       console.log('French Welcome Message:', message);
+       return message;
+     })
+   );
+
+   this.welcomeMessageEnglish$ = this.httpClient.get(this.baseURL + '/welcome?lang=en-US', { responseType: 'text' }).pipe(
+     map(message => {
+       console.log('English Welcome Message:', message);
+       return message;
+     })
+   );
+
+   this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', { responseType: 'text' }).pipe(
+     map(presentation => {
+       console.log('Presentation Announcement:', presentation);
+       return presentation;
+     })
+   );
       this.roomsearch= new FormGroup({
         checkin: new FormControl(' '),
         checkout: new FormControl(' ')
