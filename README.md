@@ -1,8 +1,8 @@
 C. Modify the Landon Hotel scheduling application for localization and internationalization by doing the following:
 1. Install the Landon Hotel scheduling application in your integrated development environment (IDE). Modify the Java classes of application to display a welcome message by doing the following:
    a. Build resource bundles for both English and French (languages required by Canadian law). Include a welcome message in the language resource bundles.
-   CREATE:
-   Resource Bundle 'translation'
+
+   Resource Bundle:
 
             translation_en_us.properties
                 hello=Hi!
@@ -17,7 +17,6 @@ C. Modify the Landon Hotel scheduling application for localization and internati
 b. Display the welcome message in both English and French by applying the resource bundles using a different thread for each language.
 
 
-package edu.wgu.d387_sample_code.Localization;
 public class WelcomeController {
 private final ExecutorService executor = Executors.newFixedThreadPool(2);
 
@@ -35,33 +34,7 @@ private final ExecutorService executor = Executors.newFixedThreadPool(2);
     }
 }
 
-app.component.ts
 
-   ngOnInit(){
-
-       this.welcomeMessageFrench$ = this.httpClient.get(this.baseURL + '/welcome?lang=fr-CA', { responseType: 'text' }).pipe(
-           map(message => {
-             console.log('French:', message);
-             return message;
-           })
-         );
-      
-         this.welcomeMessageEnglish$ = this.httpClient.get(this.baseURL + '/welcome?lang=en-US', { responseType: 'text' }).pipe(
-           map(message => {
-             console.log('English:', message);
-             return message;
-           })
-         );
-      
-         this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', { responseType: 'text' }).pipe(
-           map(presentation => {
-             console.log('Announcement:', presentation);
-             return presentation;
-           })
-         );
-
-
-package edu.wgu.d387_sample_code.Localization;
 public class WelcomeMessage implements Runnable {
 
     private final Locale locale;
@@ -123,16 +96,14 @@ app.component.html
    Note: It is not necessary to convert the values of the prices.
    MODIFY:
 
-        app.component.ts, line 70-71
-
-            this.rooms.forEach( room => { room.priceCAD = room.price; room.priceEUR = room.price})
+        app.component.ts
+        this.rooms.forEach( room => { room.priceCAD = room.price; room.priceEUR = room.price})
     
-        app.component.ts, line 120-122
-
+        app.component.ts
             priceCAD:string;
             priceEUR:string;
 
-        app.component.html, line 86-90
+        app.component.html
             <strong> Price: CA${{room.priceCAD}} </strong> <br> 
             <strong> Price: EUR€{{room.priceEUR}} </strong> <br>
 
@@ -167,3 +138,5 @@ public class ConvertTimezone {
     }
 
 }
+
+D.
