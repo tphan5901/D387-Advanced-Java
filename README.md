@@ -139,7 +139,7 @@ public class ConvertTimezone {
 
 }
 
-D. Create dockerized file
+D. Create Dockerized file
 
 FROM openjdk:11
 EXPOSE 8080
