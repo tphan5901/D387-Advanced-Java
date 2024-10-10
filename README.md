@@ -15,7 +15,6 @@ Resource Bundle:
 
 b. Display the welcome message in both English and French by applying the resource bundles using a different thread for each language.
 
-
 public class WelcomeController {
 private final ExecutorService executor = Executors.newFixedThreadPool(2);
 
@@ -61,7 +60,6 @@ public class WelcomeMessage implements Runnable {
 
 @SpringBootApplication
 public class D387SampleCodeApplication {
-
 	private static ExecutorService executorService = Executors.newFixedThreadPool(2);
 
 	public static void main(String[] args) {
@@ -92,7 +90,6 @@ app.component.html
 
 2. Modify the front end to display the price for a reservation in currency rates for U.S. dollars ($), Canadian dollars (C$), and euros (€) on different lines.
    Note: It is not necessary to convert the values of the prices.
-   MODIFY:
 
         app.component.ts
         this.rooms.forEach( room => { room.priceCAD = room.price; room.priceEUR = room.price})
