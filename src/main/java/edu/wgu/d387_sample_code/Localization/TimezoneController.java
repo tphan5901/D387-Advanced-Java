@@ -17,5 +17,4 @@ public class TimezoneController {
         return new ResponseEntity<>(announcement, HttpStatus.OK);
     }
 
-
 }

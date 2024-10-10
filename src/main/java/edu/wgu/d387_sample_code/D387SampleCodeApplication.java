@@ -9,7 +9,6 @@ import java.util.concurrent.*;
 
 @SpringBootApplication
 public class D387SampleCodeApplication {
-
 	private static ExecutorService executorService = Executors.newFixedThreadPool(2);
 
 	public static void main(String[] args) {
@@ -30,16 +29,15 @@ public class D387SampleCodeApplication {
 			}
 		}));
 		*/
-
 		SpringApplication.run(D387SampleCodeApplication.class, args);
 
-		GetBundle English = new GetBundle(Locale.US);
-		GetBundle French = new GetBundle(Locale.CANADA_FRENCH);
+		GetBundle english = new GetBundle(Locale.US);
+		GetBundle french = new GetBundle(Locale.CANADA_FRENCH);
 
-		Thread englishThread = new Thread(English);
-		Thread frenchThread = new Thread(French);
+		Thread enThread = new Thread(english);
+		Thread frThread = new Thread(french);
 
-		englishThread.start();
-		frenchThread.start();
+		enThread.start();
+		frThread.start();
 	}
 }

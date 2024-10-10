@@ -12,7 +12,6 @@ import java.util.concurrent.ExecutorService;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class WelcomeController {
-
     @GetMapping("/welcome")
     public ResponseEntity<String> displayWelcome (@RequestParam("lang") String welcome) {
         Locale locale = Locale.forLanguageTag(welcome);

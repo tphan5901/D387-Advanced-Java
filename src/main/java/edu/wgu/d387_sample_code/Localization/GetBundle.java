@@ -7,9 +7,7 @@ import java.util.ResourceBundle;
 
 @CrossOrigin(origins = "http://localhost:4200")
 public class GetBundle implements Runnable {
-
     private final Locale locale;
-
 
     public GetBundle(Locale locale) {
         this.locale = locale;
@@ -31,4 +29,5 @@ public class GetBundle implements Runnable {
             e.printStackTrace();
         }
     }
+
 }
