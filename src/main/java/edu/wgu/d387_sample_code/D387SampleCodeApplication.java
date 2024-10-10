@@ -13,6 +13,7 @@ public class D387SampleCodeApplication {
 	private static ExecutorService executorService = Executors.newFixedThreadPool(2);
 
 	public static void main(String[] args) {
+		/*
 		ConfigurableApplicationContext context = SpringApplication.run(D387SampleCodeApplication.class, args);
 
 		executorService.submit(new GetBundle(Locale.US));
@@ -28,6 +29,17 @@ public class D387SampleCodeApplication {
 				executorService.shutdownNow();
 			}
 		}));
-	}
+		*/
 
+		SpringApplication.run(D387SampleCodeApplication.class, args);
+
+		GetBundle English = new GetBundle(Locale.US);
+		GetBundle French = new GetBundle(Locale.CANADA_FRENCH);
+
+		Thread englishThread = new Thread(English);
+		Thread frenchThread = new Thread(French);
+
+		englishThread.start();
+		frenchThread.start();
+	}
 }

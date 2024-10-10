@@ -14,7 +14,7 @@ public class TimezoneController {
     @GetMapping("/presentation")
     public ResponseEntity<String> present() {
         String announcement = "There is a presentation at: " + getTime();
-        return new ResponseEntity<String> (announcement, HttpStatus.OK);
+        return new ResponseEntity<>(announcement, HttpStatus.OK);
     }
 
 

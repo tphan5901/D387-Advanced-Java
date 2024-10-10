@@ -1,5 +1,3 @@
-
-
 <header id="intro" style="display: block;">
   <article class="fullheight" style="height: 568px;">
     <div class="hgroup">
@@ -22,21 +20,14 @@
 <main id="wrapper">
   <div class="scene" id="welcome">
     <article class="content">
-      <!-- C1B-->
       <div>
-        <h1>{{welcomeMessageFrench$ | async}}</h1>
-        <h1>{{welcomeMessageEnglish$ | async}}</h1>
-
+        <h1>{{ welcomeMessageFrench$ | async }}</h1>
+        <h1>{{ welcomeMessageEnglish$ | async }}</h1>
       </div>
 
-      <br><br>
-
-      <!-- C3b -->
       <div class="scene" id="presentation">
-        <h1>{{announcePresentation$ | async}}</h1>
+        <h1>{{ announcePresentation$ | async }}</h1>
       </div>
-
-      <br><br>
 
       <div class="row">
         <div class=""col-12>
@@ -86,12 +77,14 @@
                 <td>
                   <img src="assets/images/intro_room.jpg" alt="Intro Gallery Room Sample Pictures">
                 </td>
-                <td>
-                  <strong>Room #: {{room.roomNumber}}</strong><br/>
-                  <strong>Price: ${{room.price}}</strong><br>
-                  <strong>Price: CA${{room.priceCAD}}</strong><br>
-                  <strong>Price: EUR€{{room.priceEUR}}</strong><br>
-                </td>
+                  <div *ngFor="let room of rooms">
+                    <td>
+                      <strong>Room #: {{room.roomNumber}}</strong><br/>
+                      <strong>Price: ${{room.price}}</strong><br>
+                      <strong>Price: CA${{room.priceCAD}}</strong><br>
+                      <strong>Price: EUR€{{room.priceEUR}}</strong><br>
+                    </td>
+                  </div>
                 <td>
                   <button type="submit" class="btn btn-primary" (click)="reserveRoom(room.id)">Reserve</button>
                 </td>

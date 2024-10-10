@@ -61,7 +61,6 @@ export class AppComponent implements OnInit{
         });
 
 
-
     const roomsearchValueChanges$ = this.roomsearch.valueChanges;
 
     // subscribe to the stream

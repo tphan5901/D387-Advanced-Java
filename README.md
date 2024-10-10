@@ -150,10 +150,10 @@ app.component.html Line: 33
   </div>
 
 
-D. Create Dockerized file
+D. Create Dockerfile 
 
 FROM openjdk:11
 EXPOSE 8080
-ADD target/D387_sample_code-0.0.2-SNAPSHOT.jar 
+COPY target/dockerized-application.jar /usr/src/dockerized-application.jar
 WORKDIR /usr/src
-ENTRYPOINT ["java", "-jar", "D387_sample_code-0.0.2-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "dockerized-application.jar"]
