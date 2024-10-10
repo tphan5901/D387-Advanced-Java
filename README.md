@@ -2,8 +2,7 @@ C. Modify the Landon Hotel scheduling application for localization and internati
 1. Install the Landon Hotel scheduling application in your integrated development environment (IDE). Modify the Java classes of application to display a welcome message by doing the following:
    a. Build resource bundles for both English and French (languages required by Canadian law). Include a welcome message in the language resource bundles.
 
-   Resource Bundle:
-
+Resource Bundle:
             translation_en_us.properties
                 hello=Hi!
                 welcome=Welcome to the Landon Hotel
@@ -36,7 +35,6 @@ private final ExecutorService executor = Executors.newFixedThreadPool(2);
 
 
 public class WelcomeMessage implements Runnable {
-
     private final Locale locale;
 
     public WelcomeMessage(Locale locale) {
@@ -107,37 +105,53 @@ app.component.html
             <strong> Price: CA${{room.priceCAD}} </strong> <br> 
             <strong> Price: EUR€{{room.priceEUR}} </strong> <br>
 
-3. Display the time for an online live presentation held at the Landon Hotel by doing the following: a. Write a Java method to convert times between eastern time (ET), mountain time (MT), and coordinated universal time (UTC) zones.
-   CREATE:
+3. Display the time for an online live presentation held at the Landon Hotel by doing the following:
+     a) Write a Java method to convert times between eastern time (ET), mountain time (MT), and coordinated universal time (UTC) zones.
 
-package edu.wgu.d387_sample_code.Localization;
-public class ConvertTimezone {
-
-    private static final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
-    private static final Map<String, String> timeZones = Map.<String, String>of(
-            "US EST", "America/New_York",
-            "US MST", "America/Denver",
-            "UTC", "UTC"
-    );
-
-    public static String getTime() {
-        ZonedDateTime currentTime = ZonedDateTime.now();
-
-        StringBuilder timeStringBuilder = new StringBuilder();
-        timeZones.forEach((name, zoneId) -> {
-            ZonedDateTime zonedTime = currentTime.withZoneSameInstant(ZoneId.of(zoneId));
-            timeStringBuilder.append(name).append(": ").append(zonedTime.format(timeFormat)).append(" ");
-        });
-
-        return timeStringBuilder.toString().trim();
+    public class ConvertTimezone {
+        private static final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
+        private static final Map<String, String> timeZones = Map.<String, String>of(
+                "US EST", "America/New_York",
+                "US MST", "America/Denver",
+                "UTC", "UTC"
+        );
+    
+        public static String getTime() {
+            ZonedDateTime currentTime = ZonedDateTime.now();
+            StringBuilder timeStringBuilder = new StringBuilder();
+            timeZones.forEach((name, zoneId) -> {
+                ZonedDateTime zonedTime = currentTime.withZoneSameInstant(ZoneId.of(zoneId));
+                timeStringBuilder.append(name).append(": ").append(zonedTime.format(timeFormat)).append(" ");
+            });
+            return timeStringBuilder.toString().trim();
+        }
+    
+        public static void main(String[] args) {
+            String message = getTime();
+            System.out.println("Message: " + message);
+        }
     }
 
-    public static void main(String[] args) {
-        String message = getTime();
-        System.out.println("Message: " + message);
-    }
+b. Use the time zone conversion method from part C3a to display a message stating the time in all three times zones in hours and minutes for an online,
+live presentation held at the Landon Hotel. The times should be displayed as ET, MT, and UTC.
 
-}
+app.component.ts, Lines: 30-60
+
+this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', {responseType: 'text'} )
+this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', { responseType: 'text' }).pipe(
+
+map(presentation => {
+    console.log('Presentation Announcement:', presentation);
+    return presentation;
+    })
+);
+
+app.component.html Line: 33
+
+  <div class="scene" id="presentation">
+        <h1>{{announcePresentation$ | async}}</h1>
+  </div>
+
 
 D. Create Dockerized file
 
