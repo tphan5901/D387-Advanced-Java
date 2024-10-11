@@ -3,7 +3,6 @@ import edu.wgu.d387_sample_code.Localization.GetBundle;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
 import java.util.Locale;
 import java.util.concurrent.*;
 
@@ -12,6 +11,7 @@ public class D387SampleCodeApplication {
 	private static ExecutorService executorService = Executors.newFixedThreadPool(2);
 
 	public static void main(String[] args) {
+		SpringApplication.run(D387SampleCodeApplication.class, args);
 		/*
 		ConfigurableApplicationContext context = SpringApplication.run(D387SampleCodeApplication.class, args);
 
@@ -29,8 +29,6 @@ public class D387SampleCodeApplication {
 			}
 		}));
 		*/
-		SpringApplication.run(D387SampleCodeApplication.class, args);
-
 		GetBundle english = new GetBundle(Locale.US);
 		GetBundle french = new GetBundle(Locale.CANADA_FRENCH);
 

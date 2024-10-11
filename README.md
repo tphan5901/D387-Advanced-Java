@@ -150,10 +150,22 @@ app.component.html Line: 33
   </div>
 
 
-D. Create Dockerfile 
+D. 
+
+1. Create Dockerfile 
 
 FROM openjdk:11
 EXPOSE 8080
 COPY target/dockerized-application.jar /usr/src/dockerized-application.jar
 WORKDIR /usr/src
 ENTRYPOINT ["java", "-jar", "dockerized-application.jar"]
+
+2.
+3. Describe how you would deploy the current multithreaded Spring application to the cloud. 
+Include the name of the cloud service provider you would use. 
+Note: Remember to commit and push your changes to GitLab. 
+
+I would use AWS to deploy the container since it is the most popular cloud environment known in the software industry. 
+First create the Docker Container. Second, package the project using Maven and copy the .jar file to a base image. 
+Make the app accessible by configuring the route to a port number. Lastly, upload the container to a registry. 
+Once that is done, deploy the container application to a AWS instance.

@@ -7,7 +7,6 @@ import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:4200")
 public class ConvertTimezone {
-
     private static final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
     private static final Map<String, String> timeZones = Map.<String, String>of(
             "US EST", "America/New_York",

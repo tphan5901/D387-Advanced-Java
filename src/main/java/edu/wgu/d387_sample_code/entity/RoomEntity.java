@@ -1,12 +1,8 @@
 package edu.wgu.d387_sample_code.entity;
-
 import com.sun.istack.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.*;
-
 
 @Entity
 @Table(name = "Room")
