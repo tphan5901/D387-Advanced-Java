@@ -25,11 +25,6 @@ private final ExecutorService executor = Executors.newFixedThreadPool(2);
         executor.submit(welcomeMessage);
         return new ResponseEntity<>(welcomeMessage.getMessage(), HttpStatus.OK);
     }
-
-    @PreDestroy
-    public void shutdownExecutor() {
-        executor.shutdown();
-    }
 }
 
 
@@ -43,18 +38,6 @@ public class WelcomeMessage implements Runnable {
     public String getMessage() {
         ResourceBundle bundle = ResourceBundle.getBundle("translation",locale);
         return bundle.getString("welcome");
-    }
-
-    @Override
-    public void run() {
-        try {
-            System.out.println("ThreadID: " + Thread.currentThread().getId());
-            String message = getMessage();
-            System.out.println("Welcome Message: " + message);
-        } catch (Exception e) {
-            System.err.println("Error creating threads: " + e.getMessage());
-            e.printStackTrace();
-        }
     }
 }
 
@@ -155,8 +138,7 @@ app.component.html Line: 33
   </div>
 
 
-D. 
-
+D.
 1. Create Dockerfile 
 
 FROM openjdk:11

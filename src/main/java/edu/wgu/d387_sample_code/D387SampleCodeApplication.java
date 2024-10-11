@@ -13,7 +13,6 @@ public class D387SampleCodeApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(D387SampleCodeApplication.class, args);
-
 		executorService.submit(new GetBundle(Locale.US));
 		executorService.submit(new GetBundle(Locale.CANADA_FRENCH));
 
