@@ -160,9 +160,7 @@ COPY target/dockerized-application.jar /usr/src/dockerized-application.jar
 WORKDIR /usr/src
 ENTRYPOINT ["java", "-jar", "dockerized-application.jar"]
 
-2. 
-[Screenshot (3183).png](..%2F..%2FPictures%2FScreenshots%2FScreenshot%20%283183%29.png)
-[Screenshot (3182).png](..%2F..%2FPictures%2FScreenshots%2FScreenshot%20%283182%29.png)
+2.
 
 3. Describe how you would deploy the current multithreaded Spring application to the cloud. 
 Include the name of the cloud service provider you would use.
@@ -170,4 +168,4 @@ Include the name of the cloud service provider you would use.
 I would use AWS to deploy the container since it is the most popular cloud environment known in the software industry. 
 First create the Docker Container. Second, package the project using Maven and copy the .jar file to a base image. 
 Make the app accessible by configuring the route to a port number. Lastly, upload the container to a registry. 
-Once that is done, deploy the container application to a AWS instance.
+Once that is done, deploy the container application to an AWS instance.
