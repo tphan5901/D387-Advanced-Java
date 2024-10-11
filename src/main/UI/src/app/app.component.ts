@@ -11,7 +11,6 @@ import {map} from "rxjs/operators";
 })
 export class AppComponent implements OnInit{
   private baseURL: string = 'http://localhost:8080';
-
   welcomeMessageEnglish$!: Observable<string>
   welcomeMessageFrench$!: Observable<string>
   announcePresentation$!: Observable<string>
@@ -54,7 +53,7 @@ export class AppComponent implements OnInit{
            })
          );
 
-    // Initialize form group
+    //form group
     this.roomsearch = new FormGroup({
       checkin: new FormControl(),
       checkout: new FormControl()
