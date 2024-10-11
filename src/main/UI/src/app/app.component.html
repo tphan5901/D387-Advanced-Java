@@ -77,13 +77,11 @@
                 <td>
                   <img src="assets/images/intro_room.jpg" alt="Intro Gallery Room Sample Pictures">
                 </td>
-                  <div *ngFor="let room of rooms">
-                    <td>
-                      <strong>Room #: {{room.roomNumber}}</strong><br/>
-                      <strong>Price: ${{room.price}}</strong><br>
-                      <strong>Price: CA${{room.priceCAD}}</strong><br>
-                      <strong>Price: EUR€{{room.priceEUR}}</strong><br>
-                    </td>
+                  <div>
+                    <p>Room Number: {{ room.roomNumber }}</p>
+                    <p>Room price:  ${{ room.price }}</p>
+                    <p>Price (CAD): ${{ room.priceCAD }}</p>
+                    <p>Price (EUR): ${{ room.priceEUR }}</p>
                   </div>
                 <td>
                   <button type="submit" class="btn btn-primary" (click)="reserveRoom(room.id)">Reserve</button>

@@ -3,12 +3,12 @@ C. Modify the Landon Hotel scheduling application for localization and internati
    a. Build resource bundles for both English and French (languages required by Canadian law). Include a welcome message in the language resource bundles.
 
 Resource Bundle:
-            translation_en_us.properties
+            en_us.properties
                 hello=Hi!
                 welcome=Welcome to the Landon Hotel
                 presentation.message = there is a presentation at:
 
-            translation_fr_ca.properties
+            fr_ca.properties
                 hello=Bonjour!
                 welcome=Bienvenue à l'hôtel Landon
                 presentation.message = Il y aura une présentation à l’adresse suivante:
@@ -18,7 +18,7 @@ b. Display the welcome message in both English and French by applying the resour
 public class WelcomeController {
 private final ExecutorService executor = Executors.newFixedThreadPool(2);
 
-    @GetMapping("/welcome")
+@GetMapping("/welcome")
     public ResponseEntity<String> displayWelcome(@RequestParam("lang") String lang) {
         Locale locale = Locale.forLanguageTag(lang);
         WelcomeMessage welcomeMessage = new WelcomeMessage(locale);
@@ -92,15 +92,20 @@ app.component.html
    Note: It is not necessary to convert the values of the prices.
 
         app.component.ts
-        this.rooms.forEach( room => { room.priceCAD = room.price; room.priceEUR = room.price})
-    
+            this.rooms.forEach(room => {
+                if (room.price) {
+                  room.priceCAD = room.price;
+                  room.priceEUR = room.price;
+                }
+
         app.component.ts
             priceCAD:string;
             priceEUR:string;
 
         app.component.html
-            <strong> Price: CA${{room.priceCAD}} </strong> <br> 
-            <strong> Price: EUR€{{room.priceEUR}} </strong> <br>
+                    <p>Room price:  ${{ room.price }}</p>
+                    <p>Price (CAD): ${{ room.priceCAD }}</p>
+                    <p>Price (EUR): ${{ room.priceEUR }}</p>
 
 3. Display the time for an online live presentation held at the Landon Hotel by doing the following:
      a) Write a Java method to convert times between eastern time (ET), mountain time (MT), and coordinated universal time (UTC) zones.
