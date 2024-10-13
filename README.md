@@ -147,7 +147,7 @@ COPY target/dockerized-application.jar /usr/src/dockerized-application.jar
 WORKDIR /usr/src
 ENTRYPOINT ["java", "-jar", "dockerized-application.jar"]
 
-2.
+2. Included in project folder
 
 3. Describe how you would deploy the current multithreaded Spring application to the cloud. 
 Include the name of the cloud service provider you would use.
