@@ -32,27 +32,6 @@ export class AppComponent implements OnInit{
       this.welcomeMessageEnglish$ = this.httpClient.get(this.baseURL + '/welcome?lang=en-US', {responseType: 'text'} )
       this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', {responseType: 'text'} )
 
-       this.welcomeMessageFrench$ = this.httpClient.get(this.baseURL + '/welcome?lang=fr-CA', { responseType: 'text' }).pipe(
-           map(message => {
-             console.log('French:', message);
-             return message;
-           })
-         );
-
-         this.welcomeMessageEnglish$ = this.httpClient.get(this.baseURL + '/welcome?lang=en-US', { responseType: 'text' }).pipe(
-           map(message => {
-             console.log('Message:', message);
-             return message;
-           })
-         );
-
-         this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', { responseType: 'text' }).pipe(
-           map(presentation => {
-             console.log('Presentation Announcement:', presentation);
-             return presentation;
-           })
-         );
-
     //form group
     this.roomsearch = new FormGroup({
       checkin: new FormControl(),
