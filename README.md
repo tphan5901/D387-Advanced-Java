@@ -16,8 +16,6 @@ Resource Bundle:
 b. Display the welcome message in both English and French by applying the resource bundles using a different thread for each language.
 
 public class WelcomeController {
-private final ExecutorService executor = Executors.newFixedThreadPool(2);
-
 @GetMapping("/welcome")
     public ResponseEntity<String> displayWelcome(@RequestParam("lang") String lang) {
         Locale locale = Locale.forLanguageTag(lang);
@@ -26,7 +24,6 @@ private final ExecutorService executor = Executors.newFixedThreadPool(2);
         return new ResponseEntity<>(welcomeMessage.getMessage(), HttpStatus.OK);
     }
 }
-
 
 public class WelcomeMessage implements Runnable {
     private final Locale locale;
@@ -41,7 +38,6 @@ public class WelcomeMessage implements Runnable {
     }
 }
 
-@SpringBootApplication
 public class D387SampleCodeApplication {
 	private static ExecutorService executorService = Executors.newFixedThreadPool(2);
 
@@ -70,6 +66,9 @@ app.component.html
   <h1>{{welcomeMessageFrench$ | async}}</h1>
   <h1>{{welcomeMessageEnglish$ | async}}</h1>
 
+app.component.ts
+    this.welcomeMessageFrench$ = this.httpClient.get(this.baseURL + '/welcome?lang=fr-CA', {responseType: 'text'} )
+    this.welcomeMessageEnglish$ = this.httpClient.get(this.baseURL + '/welcome?lang=en-US', {responseType: 'text'} )
 
 2. Modify the front end to display the price for a reservation in currency rates for U.S. dollars ($), Canadian dollars (C$), and euros (€) on different lines.
    Note: It is not necessary to convert the values of the prices.
@@ -117,19 +116,25 @@ app.component.html
         }
     }
 
+import static Localization.ConvertTimezone.getTime;
+
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
+public class TimezoneController {
+
+    @GetMapping("/presentation")
+    public ResponseEntity<String> present() {
+        String announcement = "There is a presentation at: " + getTime();
+        return new ResponseEntity<>(announcement, HttpStatus.OK);
+    }
+
+}
+
 b. Use the time zone conversion method from part C3a to display a message stating the time in all three times zones in hours and minutes for an online,
 live presentation held at the Landon Hotel. The times should be displayed as ET, MT, and UTC.
 
 app.component.ts, Lines: 30-60
-
-this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', {responseType: 'text'} )
-this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', { responseType: 'text' }).pipe(
-
-map(presentation => {
-    console.log('Presentation Announcement:', presentation);
-    return presentation;
-    })
-);
+    this.announcePresentation$ = this.httpClient.get(this.baseURL + '/presentation', {responseType: 'text'} )
 
 app.component.html Line: 33
 

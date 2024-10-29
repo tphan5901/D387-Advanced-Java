@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 
 @SpringBootApplication
 public class D387SampleCodeApplication {
-	private static ExecutorService executorService = Executors.newFixedThreadPool(2);
+	private static final ExecutorService executorService = Executors.newFixedThreadPool(2);
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(D387SampleCodeApplication.class, args);
